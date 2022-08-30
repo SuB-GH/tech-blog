@@ -1,6 +1,6 @@
 const User = require('./User');
 const Post = require('./Post');
-const Comment = require('./comment');
+const Comment = require('./Comment');
 
 // create associations
 // one-to-many relationship. creates the reference for the id column in the User model to link to the corresponding foreign key pair, which is the user_id in the Post model.
