@@ -10,32 +10,34 @@ Comment.init(
 
     id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
         autoIncrement: true
-    },
+      },
 
-    comment_text: {
+      comment_text: {
         type: DataTypes.STRING,
-        len: [1]
-    },
-
-    user_id: {
-        type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: 'user',
-            key: 'id'
+        validate: {
+          len: [1]
         }
-    },
+      },
 
-    post_id: {
+      user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         references: {
-            model: 'post',
-            key: 'id'
+          model: 'user',
+          key: 'id'
         }
-    }
+      },
+
+      post_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'post',
+          key: 'id'
+        }
+      }
   },
   {
     sequelize,

@@ -2,7 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 //we are including User model below, so we can retrieve some data from the user model, with a "join"
 
-const { Post, User, Vote, Comment } = require("../../models");
+const { Post, User, Comment } = require("../../models");
 
 
 // get all users
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
             'post_url',
             'title',
             'created_at',
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
         // this will "JOIN" to the User table. notice it is an an array of objects. To define this object, we need a reference to the model and attributes
         include: [
@@ -58,7 +58,7 @@ router.get('/:id', (req, res) => {
             'post_url',
             'title',
             'created_at',
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
         include: [
             // include the Comment model here:
@@ -106,43 +106,43 @@ router.post('/', (req, res) => {
 });
 
 // PUT /api/posts/upvote
-router.put('/upvote', (req, res) => {
-    // custom static method created in models/Post.js
-    Post.upvote(req.body, { Vote })
-        .then(updatedPostData => res.json(updatedPostData))
-        .catch(err => {
-            console.log(err);
-            res.status(400).json(err);
+// router.put('/upvote', (req, res) => {
+//     // custom static method created in models/Post.js
+//     Post.upvote(req.body, { Vote })
+//         .then(updatedPostData => res.json(updatedPostData))
+//         .catch(err => {
+//             console.log(err);
+//             res.status(400).json(err);
 
-        });
-    // create the vote
-    // Vote.create({
-    //     user_id: req.body.user_id,
-    //     post_id: req.body.post_id
-    // }).then(() => {
-    //     // then find the post we just voted on
-    //     return Post.findOne({
-    //         where: {
-    //             id: req.body.post_id
-    //         },
-    //         attributes: [
-    //             'id',
-    //             'post_url',
-    //             'title',
-    //             'created_at',
-    //             // use raw MySQL aggregate function query to get a count of how many votes the post has and return it under the name `vote_count`
-    //             [
-    //                 sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'),
-    //                 'vote_count'
-    //             ]
-    //         ]
-    //     })
-    //         .then(dbPostData => res.json(dbPostData))
-    //         .catch(err => {
-    //             console.log(err);
-    //             res.status(400).json(err);
-    //         });
-    // });
+//         });
+//     // create the vote
+//     // Vote.create({
+//     //     user_id: req.body.user_id,
+//     //     post_id: req.body.post_id
+//     // }).then(() => {
+//     //     // then find the post we just voted on
+//     //     return Post.findOne({
+//     //         where: {
+//     //             id: req.body.post_id
+//     //         },
+//     //         attributes: [
+//     //             'id',
+//     //             'post_url',
+//     //             'title',
+//     //             'created_at',
+//     //             // use raw MySQL aggregate function query to get a count of how many votes the post has and return it under the name `vote_count`
+//     //             [
+//     //                 sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'),
+//     //                 'vote_count'
+//     //             ]
+//     //         ]
+//     //     })
+//     //         .then(dbPostData => res.json(dbPostData))
+//     //         .catch(err => {
+//     //             console.log(err);
+//     //             res.status(400).json(err);
+//     //         });
+//     // });
 
 
 
@@ -188,5 +188,5 @@ router.put('/upvote', (req, res) => {
                 res.status(500).json(err);
             });
     });
-})
+
 module.exports = router;
