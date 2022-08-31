@@ -1,7 +1,7 @@
 // this file contains all of the user-facing routes, such as the homepage and login page
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Comment, Vote } = require('../models');
+const { Post, User, Comment } = require('../models');
 
 // get all posts for homepage
 router.get('/', (req, res) => {
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
       'post_url',
       'title',
       'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
     .then(dbPostData => {
       // pass a single post object into the homepage template
       const posts = dbPostData.map(post => post.get({ plain: true })); // This will loop over and map each Sequelize object into a serialized version of itself, saving the results in a new posts array.
-      
+      console.log(dbPostData[0]);
       res.render('homepage', { posts });
     })
     .catch(err => {
