@@ -4,7 +4,8 @@
     <span>({{post_url}})</span>
   </div>
   <div class="meta">
-    {{vote_count}} point(s) by {{user.username}} on {{created_at}}
+    {{!-- {{vote_count}} point(s) by {{user.username}} on {{created_at}} line 8 replaces line 7 --}}
+    by {{user.username}} on {{created_at}}
     |
     <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
   </div>
