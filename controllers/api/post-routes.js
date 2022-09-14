@@ -15,10 +15,10 @@ router.get('/', (req, res) => {
         // Query configuration
         attributes: [
             'id',
-            'post_url',
             'title',
+            'post_contents',
             'created_at',
-            
+
         ],
         // this will "JOIN" to the User table. notice it is an an array of objects. To define this object, we need a reference to the model and attributes
         include: [
@@ -53,10 +53,10 @@ router.get('/:id', (req, res) => {
         },
         attributes: [
             'id',
-            'post_url',
             'title',
+            'post_contents',
             'created_at',
-            
+
         ],
         include: [
             // include the Comment model here:
@@ -89,9 +89,9 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
-        Post.create({
+    Post.create({
         title: req.body.title,
-        post_url: req.body.post_url,
+        post_contents: req.body.post_contents,
         user_id: req.session.user_id // changed from req.body to req.session
     })
         .then(dbPostData => res.json(dbPostData))

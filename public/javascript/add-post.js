@@ -4,14 +4,14 @@ async function newFormHandler(event) {
     event.preventDefault();
   
     const title = document.querySelector('input[name="post-title"]').value;
-    const post_url = document.querySelector('input[name="post-url"]').value;
+    const post_contents = document.querySelector('input[name="post-contents"]').value;
   
     // this sends the post title and url along with the post - and will also grab the user ID (see api/post-routes.js)
     const response = await fetch(`/api/posts`, {
       method: 'POST',
       body: JSON.stringify({
         title,
-        post_url
+        post_contents
       }),
       headers: {
         'Content-Type': 'application/json'

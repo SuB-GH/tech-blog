@@ -1,7 +1,7 @@
 <article class="post">
   <div class="title">
-    <a href="{{post_url}}" target="_blank">{{title}}</a>
-    <span>({{post_url}})</span>
+    <a href="/post/{{id}}" target="_blank">{{title}}</a>
+        
   </div>
   <div class="meta">
     
@@ -10,3 +10,16 @@
     <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
   </div>
 </article>
+
+{{!-- <article class="post">
+  <div class="title">
+    <a href="{{title}}" target="_blank">{{title}}</a>
+    <span>({{title}})</span>
+  </div>
+  <div class="meta">
+    
+    Posted by {{user.username}} on {{format_date created_at}}
+    |
+    <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
+  </div>
+</article> --}}

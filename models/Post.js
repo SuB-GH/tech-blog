@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 // this is the connection to MySQL we stored in the connection.js file
 const sequelize = require('../config/connection');
 
-class Post extends Model {}
+class Post extends Model { }
 
-// create fields/columns for Post model. Columns are: id, title, post_url and user_id
+// create fields/columns for Post model. Columns are:  post title, contents, post creator’s username, and date created for that post and have the option to leave a comment
 Post.init(
   {
     id: {
@@ -13,17 +13,17 @@ Post.init(
       primaryKey: true,
       autoIncrement: true
     },
+
     title: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    post_url: {
+
+    post_contents: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isURL: true // Sequelize offers this as validation that this url is a verified link
-      }
+      allowNull: false
     },
+
     // "userId column determines who posted the article. 
     //references property establishes link btwn this post and user model (specifically the "id" column defined by key property which is the primary key.
     // The user_id is conversely defined as the foreign key and will be the matching link.

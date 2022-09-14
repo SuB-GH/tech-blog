@@ -3,22 +3,22 @@ const { Post } = require('../models');
 const postdata = [
 {
     title: 'Morbi non quam nec dui luctus rutrum.',
-    post_url: 'https://nasa.gov/donec.json',
+    post_contents: 'testing out these article contents',
     user_id: 2
   },
   {
     title: 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.',
-    post_url: 'https://europa.eu/parturient/montes/nascetur/ridiculus/mus/etiam/vel.aspx',
+    post_contents: 'testing out these article contents',
     user_id: 1
   },
   {
     title: 'Nunc purus.',
-    post_url: 'http://desdev.cn/enim/blandit/mi.jpg',
+    post_contents: 'testing out these article contents',
     user_id: 1
   },
   {
     title: 'Pellentesque eget nunc.',
-    post_url: 'http://google.ca/nam/nulla/integer.aspx',
+    post_contents: 'testing out these article contents',
     user_id: 2
   },
 ];
