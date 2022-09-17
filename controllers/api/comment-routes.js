@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { Comment, Post, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -40,6 +40,46 @@ router.delete('/:id', withAuth, (req, res) => {
         return;
       }
       res.json(dbCommentData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/:id', (req, res) => {
+  Comment.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'comment_text',
+      'user_id',
+      'post_id'
+    ],
+      
+    include: [
+      {
+        model: Post,
+        attributes: ['id', 'title', 'post_contents', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username']
+        }
+      },
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ],
+  })
+    .then(dbPostData => {
+      if (!dbPostData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+      res.json(dbPostData);
     })
     .catch(err => {
       console.log(err);
