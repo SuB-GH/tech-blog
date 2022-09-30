@@ -51,11 +51,15 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/signup', (req, res) => {
+  res.render('signup');
+});
+
 router.get('/post/:id', (req, res) => {
-  res.render('single-post', {
-    Post,
-    loggedIn: req.session.loggedIn
-  });
+  // res.render('single-post', {
+  //   Post,
+  //   loggedIn: req.session.loggedIn
+  // });
   Post.findOne({
     where: {
       id: req.params.id
@@ -91,12 +95,58 @@ router.get('/post/:id', (req, res) => {
       const post = dbPostData.get({ plain: true });
 
       // pass data to template
-      res.render('single-post', { post });
+      res.render('single-post', { post, loggedIn: req.session.loggedIn });
     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
+
+router.get('/post-comments', (req, res) => {
+  Post.findOne({
+      where: {
+          id: req.params.id
+      },
+      attributes: [
+          'id',
+          'title',
+          'post_contents',
+          'created_at',
+
+      ],
+      include: [
+          // include the Comment model here:
+          {
+              model: Comment,
+              attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+              include: {
+                  model: User,
+                  attributes: ['username']
+              }
+          },
+          {
+              model: User,
+              attributes: ['username']
+          }
+      ]
+
+  })
+      .then(dbPostData => {
+          if (!dbPostData) {
+              res.status(404).json({ message: 'No post found with this id' });
+              return;
+          }
+          const post = dbPostData.get({ plain: true });
+
+          res.render('post-comments', { post, loggedIn: req.session.loggedIn });
+      })
+      .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+      });
+});
+
+
 
 module.exports = router;

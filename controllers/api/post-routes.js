@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
+//const sequelize = require('../../config/connection');
 //we are including User model below, so we can retrieve some data from the user model, with a "join"
 
-const { Post, User, Comment } = require("../../models");
+const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // get all users
@@ -18,7 +18,6 @@ router.get('/', (req, res) => {
             'title',
             'post_contents',
             'created_at',
-
         ],
         // this will "JOIN" to the User table. notice it is an an array of objects. To define this object, we need a reference to the model and attributes
         include: [
@@ -105,13 +104,13 @@ router.put('/:id', withAuth, (req, res) => {
     Post.update(
         {
             title: req.body.title
-        },
-        {
+          },
+          {
             where: {
-                id: req.params.id
+              id: req.params.id
             }
-        }
-    )
+          }
+        )
         .then(dbPostData => {
             if (!dbPostData) {
                 res.status(404).json({ message: 'No post found with this id' });

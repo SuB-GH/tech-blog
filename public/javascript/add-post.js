@@ -3,15 +3,15 @@
 async function newFormHandler(event) {
     event.preventDefault();
   
-    const title = document.querySelector('input[name="post-title"]').value;
-    const post_contents = document.querySelector('textarea[name="post-contents"]').value;
+    const title = document.querySelector('input[name="post-title"]');
+    const post_contents = document.querySelector('textarea[name="post-contents"]');
   
-    // this sends the post title and url along with the post - and will also grab the user ID (see api/post-routes.js)
-    const response = await fetch(`/api/posts`, {
+    // this sends the post title along with the post - and will also grab the user ID (see api/post-routes.js)
+    const response = await fetch(`/`, {
       method: 'POST',
       body: JSON.stringify({
         title,
-        post_contents
+        post_contents 
       }),
       headers: {
         'Content-Type': 'application/json'

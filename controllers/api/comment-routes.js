@@ -68,10 +68,10 @@ router.get('/:id', (req, res) => {
           attributes: ['username']
         }
       },
-      {
-        model: User,
-        attributes: ['username']
-      }
+      // {
+      //   model: User,
+      //   attributes: ['username']
+      // }
     ],
   })
     .then(dbPostData => {
