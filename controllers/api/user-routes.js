@@ -56,10 +56,6 @@ router.get('/:id', (req, res) => {
 
 // POST /api/users
 // .create is used to insert data. Pass in key/value pairs, where keys are what we defined in the User model and the values are what we get from req.body. In SQL this command would be: 
-//INSERT INTO users
-// (username, email, password)
-// VALUES
-//   ("Lernantino", "lernantino@gmail.com", "password1234");
 router.post('/', (req, res) => {
   User.create({
     username: req.body.username,
@@ -112,9 +108,6 @@ router.post('/login', (req, res) => {
 
 // PUT /api/users/1
 //This .update() method combines the parameters for creating data and looking up data. We pass in req.body to provide the new data we want to use in the update and req.params.id to indicate where exactly we want that new data to be used. The SQl syntax would be:
-//UPDATE users
-// SET username = "Lernantino", email = "lernantino@gmail.com", password = "newPassword1234"
-// WHERE id = 1;
 router.put('/:id', (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
 

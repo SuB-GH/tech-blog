@@ -1,7 +1,4 @@
 const router = require('express').Router();
-//const sequelize = require('../../config/connection');
-//we are including User model below, so we can retrieve some data from the user model, with a "join"
-
 const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
@@ -55,7 +52,6 @@ router.get('/:id', (req, res) => {
             'title',
             'post_contents',
             'created_at',
-
         ],
         include: [
             // include the Comment model here:
@@ -103,7 +99,8 @@ router.post('/', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
     Post.update(
         {
-            title: req.body.title
+            title: req.body.title,
+            post_contents: req.body.post_contents
           },
           {
             where: {

@@ -3,36 +3,18 @@
   <h2>
     Edit Post
   </h2>
-  <form class="edit-post-form">
+  <form id="edit-post-form">
     <div>
       <input name="post-title" type="text" value="{{post.title}}" />
       <textarea id="post-contents" name="post-contents">{{post.post_contents}}</textarea>
       
     </div>
-    <div>
-      {{!-- {{post.vote_count}} {{format_plural "point" post.vote_count}} by you on {{format_date post.created_at}} line 13 replaces line 12 --}}
-      Edited by you on {{format_date post.created_at}}
+    
+    {{!-- <div class="meta">    
+      Edited by you on {{format_date created_at}}      
       |
       <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
-    </div>
-    <button type="submit">Save post</button>
-    <button type="button" class="delete-post-btn">Delete post</button>
-  </form>
-
-
-<h2>
-    Edit Post
-  </h2>
-  <form class="edit-post-form">
-    <div>
-      <input name="post-title" type="text" value="{{post.title}}" />
-      <span>({{format_url post.post_url}})</span>
-    </div>
-    <div>
-      {{post.vote_count}} {{format_plural "point" post.vote_count}} by you on {{format_date post.created_at}}
-      |
-      <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
-    </div>
+    </div> --}}
     <button type="submit">Save post</button>
     <button type="button" class="delete-post-btn">Delete post</button>
   </form>

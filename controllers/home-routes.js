@@ -56,10 +56,7 @@ router.get('/signup', (req, res) => {
 });
 
 router.get('/post/:id', (req, res) => {
-  // res.render('single-post', {
-  //   Post,
-  //   loggedIn: req.session.loggedIn
-  // });
+
   Post.findOne({
     where: {
       id: req.params.id
@@ -90,7 +87,6 @@ router.get('/post/:id', (req, res) => {
         res.status(404).json({ message: 'No post found with this id' });
         return;
       }
-
       // serialize the data
       const post = dbPostData.get({ plain: true });
 
@@ -146,7 +142,5 @@ router.get('/post-comments', (req, res) => {
           res.status(500).json(err);
       });
 });
-
-
 
 module.exports = router;

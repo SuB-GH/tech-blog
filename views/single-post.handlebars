@@ -1,25 +1,20 @@
 <ol class="post-list">
   {{#each posts as |post|}}
   <li>
-{{> post-info post }}  <!-- this imports the post-info partial -->
+ 
   </li>
   {{/each}}
 </ol>
 
-{{!-- {{> post-info post}}
-{{#if posts.length}}
-<section>
-  <h2>Your Posts</h2>
-  <ol>
-    {{#each posts as |post|}}
-    <li>
-      {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
-    </li>
-    {{/each}}
-  </ol>
-</section>
-{{/if}} --}}
+<div class="title">
+
+  <h3>{{post.title}}</h3>
+  <p>{{post.post_contents}}</p>
+</div>
+ <div class="meta">
+      Posted by {{user.username}} on {{format_date created_at}}
+    </div>
+<div>{{title}}</div>
 
 <form class="comment-form">
   <div>
@@ -29,13 +24,9 @@
   <div>
     <button type="submit">add comment</button>
   </div>
+  
 </form>
 
 {{> comments post.comments}}
 
-<script src="/javascript/edit-post.js"></script>
-<script src="/javascript/delete-post.js"></script>
 <script src="/javascript/comment.js"></script>
-
-
-

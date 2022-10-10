@@ -1,13 +1,12 @@
 // this is the file that creates a new post from the dashboard
-
 async function newFormHandler(event) {
     event.preventDefault();
   
-    const title = document.querySelector('input[name="post-title"]');
-    const post_contents = document.querySelector('textarea[name="post-contents"]');
+    const title = document.querySelector('#post-title').value;
+    const post_contents = document.querySelector('#post-contents').value;
   
     // this sends the post title along with the post - and will also grab the user ID (see api/post-routes.js)
-    const response = await fetch(`/`, {
+    const response = await fetch(`/api/posts`, {
       method: 'POST',
       body: JSON.stringify({
         title,
