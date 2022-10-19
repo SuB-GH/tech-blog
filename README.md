@@ -3,14 +3,20 @@
 ## Description: 
 This CMS-style blog site is a resource for web developers and contains tech-related blog posts. Users can publish their own blog posts as well as comment on other developers' postings.
 
-## Installation:
-Installation...
+## Technologies:
+Handlebars.js
+MySQL / Sequelize
+Express.js
+dotenv
+bcrypt
 
-## Usage:
+## Deployment:
+Tech Blog is deployed on Heroku. 
+https://aqueous-badlands-64708.herokuapp.com/
 
 
-## Link to walkthrough video:
-walkthrough...
+![alt text](public/assets/mod14-screenshot.jpg)
+
 
 ### &copy; Created by:  
 Susan Brown
