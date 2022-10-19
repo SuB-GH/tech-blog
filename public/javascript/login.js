@@ -15,7 +15,7 @@ async function loginFormHandler(event) {
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/dashboard') // this directs users to the dashboard after they login
       } else {
         alert(response.statusText);
       }
@@ -40,16 +40,20 @@ async function loginFormHandler(event) {
         headers: { 'Content-Type': 'application/json' }
       });
   
-      // check the response status
       if (response.ok) {
-        console.log('success');
+        document.location.replace('/dashboard') // this directs users to the dashboard after they login
       } else {
         alert(response.statusText);
       }
+      // check the response status
+      // if (response.ok) {
+      //   console.log('success');
+      // } else {
+      //   alert(response.statusText);
+      // }
     }
   }
   
-  document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
-  
+  document.querySelector('.login-form').addEventListener('submit', loginFormHandler);  
   document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
   

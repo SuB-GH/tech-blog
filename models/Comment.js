@@ -5,9 +5,6 @@ class Comment extends Model { }
 
 Comment.init(
     {
-        // columns will go here
-        //id, comment_text, user_id, and post_id.
-
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -34,11 +31,11 @@ Comment.init(
         post_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'post',
-                key: 'id'
+              model: 'post',
+              key: 'id'
             }
-        }
-    },
+          }
+        },
     {
         sequelize,
         freezeTableName: true,
