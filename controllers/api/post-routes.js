@@ -52,6 +52,7 @@ router.get('/:id', (req, res) => {
             'title',
             'post_contents',
             'created_at',
+            'user_id',
         ],
         include: [
             // include the Comment model here:

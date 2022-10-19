@@ -23,7 +23,7 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-
+    
     // "userId column determines who posted the article. 
     //references property establishes link btwn this post and user model (specifically the "id" column defined by key property which is the primary key.
     // The user_id is conversely defined as the foreign key and will be the matching link.

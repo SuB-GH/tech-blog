@@ -1,7 +1,7 @@
 <ol class="post-list">
   {{#each posts as |post|}}
   <li>
- 
+
   </li>
   {{/each}}
 </ol>
@@ -11,9 +11,9 @@
   <h3>{{post.title}}</h3>
   <p>{{post.post_contents}}</p>
 </div>
- <div class="meta">
-      Posted by {{user.username}} on {{format_date created_at}}
-    </div>
+<div class="meta">
+  Posted by
+</div>
 <div>{{title}}</div>
 
 <form class="comment-form">
@@ -24,9 +24,12 @@
   <div>
     <button type="submit">add comment</button>
   </div>
-  
+
 </form>
 
-{{> comments post.comments}}
+<form>
+  {{> comments post.comments}}
+
+</form>
 
 <script src="/javascript/comment.js"></script>
